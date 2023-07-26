@@ -15,6 +15,25 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'jakarta.platform:jakarta.jakartaee-api:8.0.0'
+    implementation 'org.eclipse.persistence:eclipselink:2.7.8'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+
+    //add lombok
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    //jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+    //h2 database
+    runtimeOnly 'com.h2database:h2'
+    //mustache
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
+    //security - social ouath
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
 tasks.named('test') {
