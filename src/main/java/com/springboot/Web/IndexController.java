@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -26,7 +27,9 @@ public class IndexController {
         return "index";
     }
     @GetMapping("/posts/save")
-    public String postsSave() {
+    public String postsSave(Model model) {
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("userName", sessionUser.getName());
         return "posts-save";
     }
 
@@ -39,6 +42,7 @@ public class IndexController {
     }
 
     @DeleteMapping("/api/v1/posts/{id}")
+    @ResponseBody
     public Long delete(@PathVariable Long id) {
         postsService.delete(id);
         return id;
