@@ -33,7 +33,7 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 이메일을 가진 사용자가 없습니다." +
                         "id: "+ sessionUser.getEmail()));
         posts.setMember(member);
-
+        member.addPosts(posts);
         return postsRepository.save(requestDto.toEntity()).getId();
     }
     @Transactional

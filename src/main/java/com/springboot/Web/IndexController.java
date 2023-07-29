@@ -1,6 +1,7 @@
 package com.springboot.Web;
 
 import com.springboot.Service.posts.PostsService;
+import com.springboot.Web.dto.MemberResponseDto;
 import com.springboot.Web.dto.PostsResponseDto;
 import com.springboot.security.dto.SessionUser;
 import jakarta.servlet.http.HttpSession;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

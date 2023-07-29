@@ -27,6 +27,8 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
+    private int likecount;
+
     @Builder
     public Posts(String title, String content, String author) {
         this.title = title;
@@ -36,6 +38,10 @@ public class Posts extends BaseTimeEntity {
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void addCount(){
+        this.likecount += 1;
     }
 
     public void setMember(Member member) {

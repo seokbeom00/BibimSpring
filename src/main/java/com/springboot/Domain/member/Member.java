@@ -1,9 +1,13 @@
 package com.springboot.Domain.member;
 
+import com.springboot.Domain.posts.Posts;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -25,6 +29,9 @@ public class Member {
     @Column(nullable = false)
     private Role role;
 
+    @OneToMany(mappedBy = "member")
+    List<Posts> posts = new ArrayList<>();
+
     @Builder
     public Member(String name, String email, String picture, Role role) {
         this.name = name;
@@ -38,6 +45,10 @@ public class Member {
         this.picture = picture;
 
         return this;
+    }
+
+    public void addPosts(Posts posts){
+        this.posts.add(posts);
     }
 
     public String getRoleKey(){
