@@ -34,7 +34,7 @@ public class PostsService {
                         "id: "+ sessionUser.getEmail()));
         posts.setMember(member);
         member.addPosts(posts);
-        return postsRepository.save(requestDto.toEntity()).getId();
+        return postsRepository.save(posts).getId();
     }
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
