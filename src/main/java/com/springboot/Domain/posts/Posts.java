@@ -1,11 +1,15 @@
 package com.springboot.Domain.posts;
 
 import com.springboot.Domain.BaseTimeEntity;
+import com.springboot.Domain.like.Likes;
 import com.springboot.Domain.member.Member;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -28,6 +32,9 @@ public class Posts extends BaseTimeEntity {
     private String author;
 
     private int likecount;
+
+    @OneToMany(mappedBy = "posts")
+    List<Likes> likes = new ArrayList<>();
 
     @Builder
     public Posts(String title, String content, String author) {

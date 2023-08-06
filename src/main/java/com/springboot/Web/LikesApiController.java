@@ -9,31 +9,32 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/like")
 public class LikesApiController {
     private final LikesService likeService;
 
-    @PostMapping("like/{memberId}/{postsId}")
+    @PostMapping("/{memberId}/{postsId}")
     public long save(@PathVariable Long memberId, @PathVariable Long postsId){
         return likeService.save(memberId, postsId);
     }
 
-    @DeleteMapping("like/{postsId}")
+    @DeleteMapping("/{postsId}")
     public long delete(@PathVariable Long postsId){
         return likeService.delete(postsId);
     }
 
-    @GetMapping("like/count/{postsId}")
+    @GetMapping("/count/{postsId}")
     public int getLikeCount(@PathVariable Long postsId){
         return likeService.getLikeCount(postsId);
     }
 
-    @GetMapping("like/{likeId}")
+    @GetMapping("/{likeId}")
     public MemberResponseDto findMemberById(@PathVariable Long likeId){
         return likeService.findMemberById(likeId);
     }
 
 
-    @GetMapping("like/findAll/{postsId}")
+    @GetMapping("/findAll/{postsId}")
     public List<MemberResponseDto> findAllMember(@PathVariable Long postsId){
         return likeService.findAllMember(postsId);
     }

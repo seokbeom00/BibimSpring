@@ -1,7 +1,6 @@
 package com.springboot.Web;
 
 import com.springboot.Service.posts.PostsService;
-import com.springboot.Web.dto.MemberResponseDto;
 import com.springboot.Web.dto.PostsResponseDto;
 import com.springboot.security.dto.SessionUser;
 import jakarta.servlet.http.HttpSession;

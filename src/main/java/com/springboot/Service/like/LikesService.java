@@ -8,6 +8,8 @@ import com.springboot.Domain.posts.Posts;
 import com.springboot.Domain.posts.PostsRepository;
 import com.springboot.Web.dto.MemberResponseDto;
 import com.springboot.Web.dto.LikesSaveRequestDto;
+import com.springboot.exception.MemberNotExistException;
+import com.springboot.exception.PostsNotExistException;
 import com.springboot.security.dto.SessionUser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +31,9 @@ public class LikesService {
     @Transactional
     public long save(Long memberid, Long postsid){
         Member member = memberRepository.findById(memberid)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id의 멤버가 없습니다. id: " + memberid));
+                .orElseThrow(() -> new MemberNotExistException("해당 id의 멤버가 없습니다. id: " + memberid));
         Posts posts = postsRepository.findById(postsid)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id의 게시물이 없습니다. id: " + postsid));
+                .orElseThrow(() -> new PostsNotExistException("해당 id의 게시물이 없습니다. id: " + postsid));
         Optional<Likes> likes = likeRepository.findByMemberAndPosts(member, posts);
         if (likes.isPresent()) {
             throw new IllegalStateException("해당 멤버는 이미 이 게시물을 좋아했습니다.");
